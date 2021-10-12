@@ -1,0 +1,383 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>cw1</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-10-30"><meta name="DC.source" content="cw1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MATH2019 / G12ISC (2018-2019) Coursework 1</a></li><li><a href="#2">Question 2</a></li><li><a href="#3">Question 3</a></li><li><a href="#4">Question 5</a></li><li><a href="#5">Question 6</a></li><li><a href="#6">Question 7</a></li><li><a href="#7">Question 9</a></li><li><a href="#8">Question 10</a></li></ul></div><h2 id="1">MATH2019 / G12ISC (2018-2019) Coursework 1</h2><p>NAME: LAN SHUI   STUDENT ID: 4336432</p><pre class="codeinput">clear <span class="string">all</span>;
+close <span class="string">all</span>;
+clc
+</pre><h2 id="2">Question 2</h2><pre class="codeinput"><span class="comment">% The code produces a table containing n, pn and f(pn) during the bisection method.</span>
+
+format <span class="string">long</span>
+f=@(x)x.^3+4*x.^2-10;
+[p_vec,fp_vec]=bisect(f,1,2,20);
+n=[1:20]';
+table(n,p_vec,fp_vec)
+</pre><pre class="codeoutput">
+ans =
+
+  20&times;3 table
+
+    n          p_vec                 fp_vec        
+    __    ________________    _____________________
+
+     1                 1.5                    2.375
+     2                1.25                -1.796875
+     3               1.375              0.162109375
+     4              1.3125          -0.848388671875
+     5             1.34375       -0.350982666015625
+     6            1.359375      -0.0964088439941406
+     7           1.3671875        0.032355785369873
+     8          1.36328125      -0.0321499705314636
+     9         1.365234375     7.20247626304626e-05
+    10        1.3642578125      -0.0160466907545924
+    11       1.36474609375      -0.0079892628127709
+    12      1.364990234375     -0.00395910152292345
+    13     1.3651123046875     -0.00194365901006677
+    14    1.36517333984375    -0.000935847281880342
+    15    1.36520385742188    -0.000431918799250752
+    16    1.36521911621094    -0.000179948903227256
+    17    1.36522674560547    -5.39625415285627e-05
+    18    1.36523056030273     9.03099274296437e-06
+    19     1.3652286529541    -2.24658038447956e-05
+    20    1.36522960662842     -6.7174129139147e-06
+
+</pre><h2 id="3">Question 3</h2><pre class="codeinput"><span class="comment">% The code creates a figure ploting the error versus n during the bisection method.</span>
+
+p=1.365230013;
+<span class="keyword">for</span> i=1:20
+    e=abs(p-p_vec(i));
+    semilogy(i,e,<span class="string">'bo'</span>)
+    hold <span class="string">on</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="cw1_01.png" style="width:560px;height:420px;" alt=""> <h2 id="4">Question 5</h2><pre class="codeinput"><span class="comment">% The code produces a table containing n and pn during the fixed- point iteration.</span>
+
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+clc
+
+format <span class="string">long</span>
+f=@(x)x.^3+4*x.^2-10;
+g=@(x)x-1/12*f(x);
+p_vec=fpiter(g,1,20);
+n=[1:20]';
+table(n,p_vec)
+</pre><pre class="codeoutput">
+ans =
+
+  20&times;2 table
+
+    n          p_vec      
+    __    ________________
+
+     1    1.41666666666667
+     2    1.34408757716049
+     3     1.3728812557799
+     4    1.36231272240944
+     5    1.36632151543739
+     6    1.36481867753577
+     7    1.36538460952031
+     8    1.36517185112966
+     9    1.36525188693197
+    10    1.36522178609837
+    11    1.36523310779837
+    12    1.36522884955838
+    13    1.36523045115863
+    14    1.36522984877099
+    15    1.36523007533908
+    16    1.36522999012308
+    17    1.36523002217423
+    18    1.36523001011926
+    19    1.36523001465334
+    20      1.365230012948
+
+</pre><h2 id="5">Question 6</h2><pre class="codeinput"><span class="comment">% The code creates a figure ploting the error versus n during the fixed- point iteration.</span>
+
+p=1.365230013;
+<span class="keyword">for</span> i=1:20
+    e=abs(p-p_vec(i));
+    semilogy(i,e,<span class="string">'bo'</span>)
+    hold <span class="string">on</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="cw1_02.png" style="width:560px;height:420px;" alt=""> <h2 id="6">Question 7</h2><pre class="codeinput"><span class="comment">% This code produces the pmax that for any p0 &gt;= pmax, the fixed-point iteration won't converge.</span>
+
+<span class="comment">% A general fixed-point method converges linearly if it converges. So a</span>
+<span class="comment">% criterion that can be taken to judge if the iteration converges is the</span>
+<span class="comment">% difference between p and p20 after 20 iterations. If it's large, say large</span>
+<span class="comment">% than 0.001, the iteration doesn't converge.</span>
+
+<span class="comment">% This experimental method isn't accurate enough as 0.001 and 20 don't</span>
+<span class="comment">% have a very strong theoretical basis. The accuracy is also influenced by</span>
+<span class="comment">% the amount of data being chosen.</span>
+
+a=1.37;
+<span class="comment">% The experimental data {an} being chosen is an arithmetic progression with</span>
+<span class="comment">% a0=1.37, d=0.5 and n=10.</span>
+<span class="keyword">for</span> i=1:10
+    p_vec=fpiter(g,a,20);
+    <span class="keyword">if</span> abs(p-p_vec(20,1))&gt;0.001
+        pmax=a
+        <span class="keyword">break</span>;
+    <span class="keyword">else</span>
+        a=a+0.5;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+pmax =
+
+   3.370000000000000
+
+</pre><h2 id="7">Question 9</h2><pre class="codeinput"><span class="comment">% This code produces a table containing n and pn during Newton's method.</span>
+
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+clc
+
+format <span class="string">long</span>
+f=@(x)x.^3+4*x.^2-10;
+df=@(x)3*x.^2+8*x;
+p_vec=newton(f,df,1,40,1e-10);
+n=[1:size(p_vec,1)]';
+table(n,p_vec)
+
+<span class="comment">% The code creates a figure ploting the error versus n during Newton's method.</span>
+
+p=1.365230013;
+<span class="keyword">for</span> i=1:size(p_vec,1)
+    e=abs(p-p_vec(i));
+    semilogy(i,e,<span class="string">'bo'</span>)
+    hold <span class="string">on</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+ans =
+
+  5&times;2 table
+
+    n         p_vec      
+    _    ________________
+
+    1    1.45454545454545
+    2    1.36890040106952
+    3    1.36523660020212
+    4    1.36523001343537
+    5     1.3652300134141
+
+</pre><img vspace="5" hspace="5" src="cw1_03.png" style="width:560px;height:420px;" alt=""> <h2 id="8">Question 10</h2><pre class="codeinput"><span class="comment">% This part invesgates the convergence behaviour of Newton's method for values</span>
+<span class="comment">% of p0 that approach 0 from above.</span>
+
+a=0.1;
+<span class="comment">% The experimental data {an} being chosen is an arithmetic progression with</span>
+<span class="comment">% a0=0.1, d=0.5 and n=10.</span>
+
+<span class="comment">% The code produces figures ploting pn versus n during the iteration for each p0.</span>
+
+<span class="keyword">for</span> i=1:10
+    p_vec=newton(f,df,a,40,1e-10);
+    n=size(p_vec,1);
+    subplot(2,5,i);
+    <span class="keyword">for</span> j=1:n
+        semilogy(j,p_vec(j),<span class="string">'bo'</span>)
+        hold <span class="string">on</span>
+    <span class="keyword">end</span>
+    a=a+0.5;
+<span class="keyword">end</span>
+
+<span class="comment">% From the gragh, it can be figured out that the Newton's method converges</span>
+<span class="comment">% quite quickly for p0 near 0 from above.</span>
+</pre><img vspace="5" hspace="5" src="cw1_04.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MATH2019 / G12ISC (2018-2019) Coursework 1
+% NAME: LAN SHUI   STUDENT ID: 4336432
+
+clear all;
+close all;
+clc
+
+%% Question 2
+
+% The code produces a table containing n, pn and f(pn) during the bisection method.
+
+format long
+f=@(x)x.^3+4*x.^2-10;
+[p_vec,fp_vec]=bisect(f,1,2,20);
+n=[1:20]';
+table(n,p_vec,fp_vec)
+
+
+%% Question 3
+
+% The code creates a figure ploting the error versus n during the bisection method.
+
+p=1.365230013;
+for i=1:20
+    e=abs(p-p_vec(i));
+    semilogy(i,e,'bo')
+    hold on
+end
+
+%% Question 5
+
+% The code produces a table containing n and pn during the fixed- point iteration.
+
+clear all;
+close all;
+clc
+
+format long
+f=@(x)x.^3+4*x.^2-10;
+g=@(x)x-1/12*f(x);
+p_vec=fpiter(g,1,20);
+n=[1:20]';
+table(n,p_vec)
+
+%% Question 6
+
+% The code creates a figure ploting the error versus n during the fixed- point iteration.
+
+p=1.365230013;
+for i=1:20
+    e=abs(p-p_vec(i));
+    semilogy(i,e,'bo')
+    hold on
+end
+
+%% Question 7
+
+% This code produces the pmax that for any p0 >= pmax, the fixed-point iteration won't converge.
+
+% A general fixed-point method converges linearly if it converges. So a
+% criterion that can be taken to judge if the iteration converges is the 
+% difference between p and p20 after 20 iterations. If it's large, say large
+% than 0.001, the iteration doesn't converge.
+
+% This experimental method isn't accurate enough as 0.001 and 20 don't
+% have a very strong theoretical basis. The accuracy is also influenced by
+% the amount of data being chosen.
+
+a=1.37; 
+% The experimental data {an} being chosen is an arithmetic progression with
+% a0=1.37, d=0.5 and n=10.
+for i=1:10
+    p_vec=fpiter(g,a,20);
+    if abs(p-p_vec(20,1))>0.001
+        pmax=a
+        break;
+    else
+        a=a+0.5;
+    end
+end
+
+%% Question 9
+
+% This code produces a table containing n and pn during Newton's method.
+
+clear all;
+close all;
+clc
+
+format long
+f=@(x)x.^3+4*x.^2-10;
+df=@(x)3*x.^2+8*x;
+p_vec=newton(f,df,1,40,1e-10);
+n=[1:size(p_vec,1)]';
+table(n,p_vec)
+
+% The code creates a figure ploting the error versus n during Newton's method.
+
+p=1.365230013;
+for i=1:size(p_vec,1)
+    e=abs(p-p_vec(i));
+    semilogy(i,e,'bo')
+    hold on
+end
+
+%% Question 10
+
+% This part invesgates the convergence behaviour of Newton's method for values
+% of p0 that approach 0 from above.
+
+a=0.1; 
+% The experimental data {an} being chosen is an arithmetic progression with
+% a0=0.1, d=0.5 and n=10.
+
+% The code produces figures ploting pn versus n during the iteration for each p0.
+
+for i=1:10
+    p_vec=newton(f,df,a,40,1e-10);
+    n=size(p_vec,1);
+    subplot(2,5,i);
+    for j=1:n
+        semilogy(j,p_vec(j),'bo')
+        hold on 
+    end
+    a=a+0.5;
+end
+        
+% From the gragh, it can be figured out that the Newton's method converges
+% quite quickly for p0 near 0 from above.
+
+##### SOURCE END #####
+--></body></html>
